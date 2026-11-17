@@ -3,7 +3,8 @@
 
 
 
-#include "../include/STD_TYPES.h"
+
+#include "../../../lib/STD_TYPES.h"
 
 
 typedef enum 
@@ -129,7 +130,7 @@ error_t RCC_SelectSysCLK(Clock_t clock);
 
 error_t RCC_Clockcontrol(Clock_t clock,Clock_state_t state);
 
-error_t RCC_PLL_CFG(PLL_CFG*CFG_PLL);
+error_t RCC_PLL_CFG(const PLL_CFG*CFG_PLL);
 
 error_t RCC_APB2_Prescaler(APB_Prescaler_t prescaler);
 
@@ -145,10 +146,17 @@ error_t RCC_APB1_Control(APB1_t peripheral ,Clock_state_t state);
 
 error_t RCC_APB2_Control(APB2_t peripheral ,Clock_state_t state);
 
-u32 RCC_GetsystenClk_Freq(void);
+u32 RCC_GetsystemClk_Freq(void);
 
-Clock_t RCC_GetsystenClk(void);
+u32 RCC_GetAHBClk_Freq(void);
+
+Clock_t RCC_GetsystemClk(void);
+
+error_t  RCC_GET_SYSCLKFreq(void);
+
 
 
 
 #endif /* RCC_INT */
+
+

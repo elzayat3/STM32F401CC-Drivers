@@ -1,7 +1,7 @@
 #ifndef GPIO_PRIVATE
 #define GPIO_PRIVATE
 
-#include "../include/STD_TYPES.h"
+#include "../../../lib/STD_TYPES.h"
 
 #define GPIOA_BASE_ADDRESS (0x40020000)
 #define GPIOB_BASE_ADDRESS (0x40020400)

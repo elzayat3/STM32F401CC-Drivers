@@ -1,6 +1,11 @@
-#include "../include/STD_TYPES.h"
-#include "../include/RCC_Int.h"
-#include "../include/RCC_Private.h"
+#include "../../../lib/STD_TYPES.h"
+
+
+
+#include "../../../include/MCAL/RCC/RCC_Int.h"
+
+
+#include "../../../include/MCAL/RCC/RCC_Private.h"
 
 static u32 m_freq=0;
 
@@ -45,7 +50,7 @@ static error_t RCC_PLL_SOURCE_CFG(const PLL_CFG*CFG_PLL)
     return status;
 }
 
-static error_t RCC_M_CFG(PLL_CFG*CFG_PLL)
+static error_t RCC_M_CFG(const PLL_CFG*CFG_PLL)
 {
     error_t status=OK;
     if(CFG_PLL == NULL)
@@ -75,7 +80,7 @@ static error_t RCC_M_CFG(PLL_CFG*CFG_PLL)
     }
     return status;
 }
-static error_t RCC_N_CFG(PLL_CFG*CFG_PLL)
+static error_t RCC_N_CFG(const  PLL_CFG*CFG_PLL)
 {
     error_t status=OK;
 
@@ -107,7 +112,7 @@ static error_t RCC_N_CFG(PLL_CFG*CFG_PLL)
     return status;
 }
 
-static error_t RCC_P_CFG(PLL_CFG*CFG_PLL)
+static error_t RCC_P_CFG(const PLL_CFG*CFG_PLL)
 {
     error_t status=OK;
     if(CFG_PLL == NULL)
@@ -151,7 +156,7 @@ static error_t RCC_P_CFG(PLL_CFG*CFG_PLL)
     return status;
 }
 
-static error_t RCC_Q_CFG(PLL_CFG*CFG_PLL)
+static error_t RCC_Q_CFG(const PLL_CFG*CFG_PLL)
 {
     error_t status=OK;
 
@@ -314,6 +319,17 @@ error_t RCC_SelectSysCLK(Clock_t clock)
     if (status == OK)
     {
         SystemFreq = requestedFreq;
+
+        u32 prescaler =(RCC->CFGR >> AHB_PRE_BIT) & AHB_PRE_MASK;
+
+        if (prescaler <= SYS)
+        {
+            RCC_AHB_Freq_CFG(SYS);
+        }
+        else
+        {
+            RCC_AHB_Freq_CFG((AHB_Prescaler_t)prescaler);
+        }
     }
     else{;}
 
@@ -412,7 +428,7 @@ error_t RCC_Clockcontrol(Clock_t clock,Clock_state_t state)
 
 }
 
-error_t RCC_PLL_CFG(PLL_CFG*CFG_PLL)
+error_t RCC_PLL_CFG(const PLL_CFG*CFG_PLL)
 {
     error_t status =OK;
 
@@ -622,12 +638,17 @@ error_t RCC_APB2_Control(APB2_t peripheral ,Clock_state_t state)
     return status;
 }
 
-u32 RCC_GetsystenClk_Freq(void)
+u32 RCC_GetsystemClk_Freq(void)
 {
     return SystemFreq;
 }
 
-Clock_t RCC_GetsystenClk(void)
+u32 RCC_GetAHBClk_Freq(void)
+{
+    return AHB_Freq;
+}
+
+Clock_t RCC_GetsystemClk(void)
 {
     return (Clock_t)GET_2BIT(RCC->CFGR, SWSBIT);
 }

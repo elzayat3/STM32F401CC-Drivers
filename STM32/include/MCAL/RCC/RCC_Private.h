@@ -1,7 +1,8 @@
+
 #ifndef RCC_PRIVATE
 #define RCC_PRIVATE
 
-#include "../include/STD_TYPES.h"
+#include "../../../lib/STD_TYPES.h"
 
 #define RCC_BASE_ADRESS (0x40023800)
 
@@ -150,3 +151,4 @@ typedef struct
 
 
 #endif /* RCC_PRIVATE_H */
+

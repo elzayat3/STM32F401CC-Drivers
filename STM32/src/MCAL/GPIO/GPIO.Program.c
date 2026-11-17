@@ -1,7 +1,7 @@
-#include "../include/STD_TYPES.h"
+#include "../../../lib/STD_TYPES.h"
 
-#include "../include/GPIO_Int.h"
-#include "../include/GPIO_Private.h"
+#include "../../../include/MCAL/GPIO/GPIO_Int.h"
+#include "../../../include/MCAL/GPIO/GPIO_Private.h"
 
 
 static volatile GPIO_t*GPIO[TOTAL_PORTS]={GPIOA,GPIOB,GPIOC,GPIOD,GPIOE,GPIOH};
@@ -421,7 +421,24 @@ error_t GPIO_enuCfgAltFun(port_t Cpy_enuPort,pin_t Cpy_enuPin,alt_fun_t Cpy_enuA
     }
      return Loc_enustatus;
 }
+error_t GPIO_enumTogglePin(port_t Cpy_enuPort, pin_t Cpy_enuPin)
+{
+    error_t Loc_enuStatus=OK;
 
+    Loc_enuStatus=GPIO_staticEnuPortRnage(Cpy_enuPort);
+
+    if (Loc_enuStatus==OK)
+    {
+        Loc_enuStatus=GPIO_staticEnuPinRnage(Cpy_enuPin);
+    }
+
+    if (Loc_enuStatus==OK)
+    {
+        TOG_BIT(GPIO[Cpy_enuPort]->ODR,Cpy_enuPin);
+    }
+
+    return Loc_enuStatus;
+}
 
 
 

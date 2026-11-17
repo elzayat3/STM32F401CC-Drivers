@@ -1,8 +1,9 @@
 #ifndef GPIO_INT
 #define GPIO_INT
 
+#include "../../../lib/STD_TYPES.h"
 
-#include "../include/STD_TYPES.h" 
+
 
 typedef enum 
 {
@@ -110,6 +111,8 @@ error_t GPIO_enuPinInit(const Pin_cfg_t*ref_strCfg);
 error_t GPIO_enumWritePin(port_t Cpy_enuPort,pin_t Cpy_enuPin,value_t Cpy_enuValue);
 
 error_t GPIO_enumReadPin(port_t Cpy_enuPort,pin_t Cpy_enuPin,value_t*ref_enuValue);
+
+error_t GPIO_enumTogglePin(port_t Cpy_enuPort, pin_t Cpy_enuPin);
 
 error_t GPIO_enumWritePort(port_t Cpy_enuPort,u16 Cpy_u16value);
 
