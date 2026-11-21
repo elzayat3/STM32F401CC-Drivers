@@ -263,3 +263,15 @@ error_t NVIC_SetPriorityGrouping(NVIC_Group_t group)
 
     return status;
 }
+
+error_t NVIC_TriggerSoftwareIRQ(NVIC_IRQ_t IRQn)
+{
+    error_t status=NVIC_ValidateIRQ(IRQn);
+
+    if(status==OK)
+    {
+        NVIC->STIR=((u32)IRQn&NVIC_STIR_INTID_MASK);
+    }
+
+    return status;
+}

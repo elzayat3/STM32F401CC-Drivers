@@ -169,4 +169,6 @@ error_t NVIC_SetPriority(NVIC_IRQ_t IRQn,u8 GroupPriority,u8 SubPriority);
 error_t NVIC_GetPriority(NVIC_IRQ_t IRQn,u8 *GroupPriority,u8 *SubPriority);
 error_t NVIC_SetPriorityGrouping(NVIC_Group_t group);
 
+error_t NVIC_TriggerSoftwareIRQ(NVIC_IRQ_t IRQn);
+
 #endif /* NVIC_INT */

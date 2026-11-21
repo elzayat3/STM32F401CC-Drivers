@@ -36,4 +36,6 @@ typedef struct
 #define SCB_AIRCR_PRIGROUP_BIT  (8U)
 #define SCB_AIRCR_PRIGROUP_MASK (0x7UL << SCB_AIRCR_PRIGROUP_BIT)
 
+#define NVIC_STIR_INTID_MASK    0x1FFUL
+
 #endif /* NVIC_PRIVATE_H_ */

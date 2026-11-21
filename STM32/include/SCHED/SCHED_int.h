@@ -1,12 +1,31 @@
-#ifndef OS_INT
-#define OS_INT
+#ifndef SCHED_INT
+#define SCHED_INT
 
 #include "../../lib/STD_TYPES.h"
 
+typedef struct
+{
+	PTF TASK_PTR;
+	u16 TASK_CyclicTime;
+    u8  TASK_FirstDalay;
 
-u8 OS_u8CreateTask(PTF ptr,u16 Copy_u16Periodicity,u8 Copy_u8Priority,u8 Copy_u8FirstDelay);
-void OS_Scheduler(void);
-void OS_Start(u32 Copy_TickTimeus);
+}TASK;
+typedef enum
+{
+    triggered,
+    nottriggered
+}trigger_t;
 
 
-#endif /* OS_INT */
+error_t  SCHED_Init(void);
+
+void SCHED_Stop(void);
+
+void SCHED_Start(void);
+
+void SCHED_Handler(void);
+
+
+
+
+#endif /* SCHED_INT */

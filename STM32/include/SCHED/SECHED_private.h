@@ -5,12 +5,6 @@
 #include "../../lib/STD_TYPES.h"
 
 
-typedef struct
-{
-	PTF TASK_PTR;
-	u16 TASK_CyclicTime;
-    u8  TASK_FirstDalay;
-
-}TASK;
+#define TOTAL_TASK   100
 
 #endif /* OS_PRIVATE */
